@@ -1,0 +1,5 @@
+.env
+tweets.txt
+other/
+venv/
+.idea/
