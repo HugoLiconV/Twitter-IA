@@ -21,8 +21,8 @@ if not api:
     print("Can't Authenticate")
     sys.exit(-1)
 
-# Continue with rest of code
-searchQuery = '#4MinutosEnZDU'  # this is what we're searching for
+# API CONSTANTS
+searchQuery = 'Code'  # this is what we're searching for
 maxTweets = 10000000  # Some arbitrary large number
 tweetsPerQry = 100  # this is the max the API permits
 fName = 'tweets.txt'  # We'll store the tweets in a text file.
@@ -53,7 +53,6 @@ with open(fName, 'wb') as f:
                 else:
                     new_tweets = api.search(q=searchQuery, count=tweetsPerQry,
                                             max_id=str(max_id - 1),
-
                                             since_id=sinceId)
             if not new_tweets:
                 print("No more tweets found")
