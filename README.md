@@ -8,7 +8,7 @@
     `cd Twitter-IA`
 3.  Install dependencies
     `pip install -r requirements.txt`
-4.  Create **.env** file (use .env.example as guide)
+4.  Write your twitter credentials in `secret.example.py` and then **rename it** to `secret.py`
 
 ## Execute
     `python main.py`

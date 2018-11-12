@@ -1,28 +1,22 @@
 import sys
 import tweepy
-import os
-from dotenv import load_dotenv
+import secret
 
-# Load Environment variables for tokens
-load_dotenv()
+API_KEY = secret.API_KEY
+API_SECRET = secret.API_SECRET
+ACCESS_TOKEN = secret.ACCESS_TOKEN
+ACCESS_TOKEN_SECRET = secret.ACCESS_TOKEN_SECRET
 
-SECRET_KEY = os.getenv("API_KEY")
-API_SECRET = os.getenv("API_SECRET")
-ACCESS_TOKEN = os.getenv("ACCESS_TOKEN")
-ACCESS_TOKEN_SECRET = os.getenv("ACCESS_TOKEN_SECRET")
-
-auth = tweepy.OAuthHandler(SECRET_KEY, API_SECRET)
+auth = tweepy.OAuthHandler(API_KEY, API_SECRET)
 auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
-
 api = tweepy.API(auth, wait_on_rate_limit=True,
                  wait_on_rate_limit_notify=True)
-
 if not api:
     print("Can't Authenticate")
     sys.exit(-1)
 
 # API CONSTANTS
-searchQuery = 'Code'  # this is what we're searching for
+searchQuery = '#MarchaFifi'  # this is what we're searching for
 maxTweets = 10000000  # Some arbitrary large number
 tweetsPerQry = 100  # this is the max the API permits
 fName = 'tweets.txt'  # We'll store the tweets in a text file.
@@ -59,7 +53,6 @@ with open(fName, 'wb') as f:
                 break
             for tweet in new_tweets:
                 f.write(tweet.text.encode("utf-8"))
-                print(tweet.text)
             tweetCount += len(new_tweets)
             print("Downloaded {0} tweets".format(tweetCount))
             max_id = new_tweets[-1].id

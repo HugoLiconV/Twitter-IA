@@ -1,5 +1,6 @@
-.env
+secret.py
 tweets.txt
 other/
 venv/
 .idea/
+__pycache__/
